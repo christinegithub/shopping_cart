@@ -6,6 +6,7 @@
 # add up the total cost of all products in the cart after tax
 # Think about which class needs to make reference to the other one and remember to use a
 # import statement accordingly. You don't need it in both files.
+
 from product import Product
 
 class ShoppingCart:
@@ -41,6 +42,17 @@ class ShoppingCart:
             total_after_tax += product.total_price()
         return '%.2f' % total_after_tax
 
+    def find_expensive(self):
+        most_expensive_price = 0
+        most_expensive_product = ""
+
+        for product in self.products:
+            if product.total_price() > most_expensive_price:
+                most_expensive_price = product.total_price()
+                most_expensive_product = product.name
+        return most_expensive_product
+
+
 table = Product("table", 13.50, 6)
 chair = Product("chair", 5.75, 6)
 whiteboard = Product("whiteboard", 22.25, 6)
@@ -65,3 +77,6 @@ print(shopping_cart.total_before_tax())
 
 # Total after taxes (table, whiteboard, eraser) 39.00
 print(shopping_cart.total_after_tax())
+
+# Find most find_expensive
+print(shopping_cart.find_expensive())
