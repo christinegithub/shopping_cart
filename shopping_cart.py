@@ -53,9 +53,9 @@ class ShoppingCart:
         return most_expensive_product
 
 
-table = Product("table", 13.50, 6, 1)
-chair = Product("chair", 5.75, 6, 4)
-whiteboard = Product("whiteboard", 22.25, 6, 2)
+table = Product("table", 13.50, "standard", 1) # 15.25
+chair = Product("chair", 5.75, "tax-exempt", 4) # 23
+whiteboard = Product("whiteboard", 22.25, "tax-exempt", 3) # 66.75
 
 list_of_products = [table, chair, whiteboard]
 
@@ -64,7 +64,7 @@ shopping_cart = ShoppingCart(list_of_products)
 print(shopping_cart)
 
 # Add product
-eraser = Product("eraser", 1.05, 6, 10)
+eraser = Product("eraser", 1.05, "imported", 10) # 13.13
 shopping_cart.add_product(eraser)
 print(shopping_cart)
 
@@ -72,10 +72,10 @@ print(shopping_cart)
 shopping_cart.remove_product(chair)
 print(shopping_cart)
 
-# Total before taxes (table, whiteboard, eraser) 68.50
+# Total before taxes (table, whiteboard, eraser)
 print(shopping_cart.total_before_tax())
 
-# Total after taxes (table, whiteboard, eraser) 71.68
+# Total after taxes (table, whiteboard, eraser)
 print(shopping_cart.total_after_tax())
 
 # Find most find_expensive
