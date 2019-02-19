@@ -19,9 +19,9 @@ class ShoppingCart:
         product_list = ""
         for index, product in enumerate(self.products):
             if index == 0:
-                product_list += "Shopping cart: {}".format(product.name)
+                product_list += "Shopping cart: {} x {}".format(product.name, product.quantity)
             else:
-                product_list += ", {}".format(product.name)
+                product_list += ", {} x {}".format(product.name, product.quantity)
         return product_list
 
     def add_product(self, product):
@@ -33,7 +33,7 @@ class ShoppingCart:
     def total_before_tax(self):
         total_before_tax = 0
         for product in self.products:
-            total_before_tax += product.base_price
+            total_before_tax += (product.base_price * product.quantity)
         return '%.2f' % total_before_tax
 
     def total_after_tax(self):
@@ -53,9 +53,9 @@ class ShoppingCart:
         return most_expensive_product
 
 
-table = Product("table", 13.50, 6)
-chair = Product("chair", 5.75, 6)
-whiteboard = Product("whiteboard", 22.25, 6)
+table = Product("table", 13.50, 6, 1)
+chair = Product("chair", 5.75, 6, 4)
+whiteboard = Product("whiteboard", 22.25, 6, 2)
 
 list_of_products = [table, chair, whiteboard]
 
@@ -64,7 +64,7 @@ shopping_cart = ShoppingCart(list_of_products)
 print(shopping_cart)
 
 # Add product
-eraser = Product("eraser", 1.05, 6)
+eraser = Product("eraser", 1.05, 6, 10)
 shopping_cart.add_product(eraser)
 print(shopping_cart)
 
@@ -72,10 +72,10 @@ print(shopping_cart)
 shopping_cart.remove_product(chair)
 print(shopping_cart)
 
-# Total before taxes (table, whiteboard, eraser) 36.80
+# Total before taxes (table, whiteboard, eraser) 68.50
 print(shopping_cart.total_before_tax())
 
-# Total after taxes (table, whiteboard, eraser) 39.00
+# Total after taxes (table, whiteboard, eraser) 71.68
 print(shopping_cart.total_after_tax())
 
 # Find most find_expensive
